@@ -1,0 +1,85 @@
+:root {
+  --primary-start: #4f46e5;  /* Indigo */
+  --primary-end: #06b6d4;    /* Cyan */
+  --text-light: #ffffff;
+  --text-dark: #0f172a;
+  --shadow: 0 6px 20px rgba(79, 70, 229, 0.25);
+  --shadow-hover: 0 10px 30px rgba(79, 70, 229, 0.35);
+  --transition: all 0.25s ease;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+/* Common Button Style */
+.custom-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: var(--transition);
+  outline: none;
+  position: relative;
+  letter-spacing: 0.3px;
+}
+
+/* Primary (gradient) button */
+.custom-btn.primary {
+  color: var(--text-light);
+  background: linear-gradient(90deg, var(--primary-start), var(--primary-end));
+  box-shadow: var(--shadow);
+}
+
+.custom-btn.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.custom-btn.primary:active {
+  transform: scale(0.98);
+}
+
+/* Secondary (outline) button */
+.custom-btn.secondary {
+  background: transparent;
+  color: var(--primary-start);
+  border: 2px solid var(--primary-start);
+}
+
+.custom-btn.secondary:hover {
+  background: rgba(79, 70, 229, 0.06);
+  color: var(--primary-end);
+}
+
+/* Glow Animation on Hover */
+.custom-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary-start), var(--primary-end));
+  opacity: 0;
+  filter: blur(12px);
+  transition: var(--transition);
+  z-index: -1;
+}
+
+.custom-btn:hover::after {
+  opacity: 0.7;
+}
+
+/* Optional subtle focus ring */
+.custom-btn:focus-visible {
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+}
+
+/* Disabled */
+.custom-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}

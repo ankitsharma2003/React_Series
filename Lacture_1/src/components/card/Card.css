@@ -1,0 +1,113 @@
+:root {
+  --accent1: #4f46e5;   /* Indigo */
+  --accent2: #06b6d4;   /* Cyan */
+  --bg: #ffffff;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 15px 30px rgba(79, 70, 229, 0.25);
+  --transition: all 0.25s ease;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+/* CARD WRAPPER */
+.custom-card {
+  margin-block: 20px;
+  width: 320px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg);
+  box-shadow: var(--shadow);
+  border: 2px solid transparent;
+  transition: var(--transition);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Gradient border on hover */
+.custom-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: var(--transition);
+}
+.custom-card:hover::before {
+  opacity: 1;
+}
+
+/* Hover scale effect */
+.custom-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* IMAGE SECTION */
+.card-image img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(15,23,42,0.06);
+  transition: var(--transition);
+}
+.custom-card:hover .card-image img {
+  transform: scale(1.03);
+}
+
+/* CONTENT */
+.card-content {
+  padding: 16px 18px 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.card-description {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+/* BUTTON */
+.card-btn {
+  align-self: flex-start;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 6px 20px rgba(79,70,229,0.2);
+}
+
+.card-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(79,70,229,0.3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .custom-card {
+    width: 100%;
+  }
+}
